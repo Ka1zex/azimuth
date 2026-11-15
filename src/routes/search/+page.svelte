@@ -1,0 +1,17 @@
+<script>
+ let query = '';
+ let category = 'Все';
+ const maps = ['Прибытие','Прибрежная зона','Холодная гавань','Глушь','Сенот','Морены','Замёрзшая граница','Северный рубеж','Холодная точка','Эстуарий','Чаща','Арочные озёра','Кладбище империй','Стальные бульвары'];
+ const entries = [
+  {title:'Каталог схем', type:'Схемы', description:'Файлы схем и инструкция по импорту.', href:'/schematics', status:'Каталог'},
+  {title:'Coreforum', type:'Схемы', description:'Файл схемы из репозитория мода.', href:'/schematics', status:'Файл'},
+  ...maps.map(title => ({title, type:'Карты', description:'Будущий гайд по сектору и маршрутам юнитов.', href:'/#template-map', status:'Заготовка'})),
+  {title:'Турели и контрпики', type:'Оборона', description:'Какие турели использовать против разных целей.', href:'/#template-counter', status:'Заготовка'},
+  {title:'Создание карт', type:'Карты', description:'Шаблон руководства по редактору карт.', href:'/#template-editor', status:'Заготовка'},
+  {title:'Медиа мода', type:'Медиа', description:'Спрайты, звуки, музыка и файлы карт.', href:'/#media', status:'Каталог'}
+ ];
+ $: filtered = entries.filter(item => (category === 'Все' || item.type === category) && (item.title + ' ' + item.description + ' ' + item.type).toLowerCase().includes(query.trim().toLowerCase()));
+</script>
+<svelte:head><title>Поиск статей — Azimuth Wiki</title><meta name="description" content="Поиск по каталогу Azimuth Wiki" /></svelte:head>
+<nav class="navbar navbar-inverse"><div class="container"><div class="navbar-header"><a class="navbar-brand" href="/">AZIMUTH / WIKI</a></div><ul class="nav navbar-nav navbar-right"><li><a href="/schematics">Схемы</a></li><li><a href="/search">Поиск статей</a></li><li><a href="https://github.com/DeerCarbonate/Azimuth">GitHub ↗</a></li></ul></div></nav>
+<main class="container"><p><a href="/">Главная</a> / Поиск</p><div class="row"><div class="col-md-8"><p><strong>БАЗА ЗНАНИЙ / 02</strong></p><h1>Найдите свой<br>следующий шаг.</h1><p class="lead">Карты, схемы, оборона и материалы мода — в одном каталоге.</p></div><div class="col-md-4"><div class="well"><strong>ПРИМЕЧАНИЕ</strong><p>Каталог находится в наполнении. Заготовки ведут к шаблонам, а не к готовым гайдам.</p></div></div></div><hr><div class="row"><aside class="col-md-3"><h3>Фильтры</h3><label for="category">Раздел</label><select id="category" class="form-control" bind:value={category}><option>Все</option><option>Схемы</option><option>Карты</option><option>Оборона</option><option>Медиа</option></select><br><p>Ищите по названию, разделу или описанию.</p></aside><div class="col-md-9"><label for="query">Поиск по статьям</label><input id="query" class="form-control input-lg" type="search" placeholder="Например, Прибытие" bind:value={query}><p><br><strong>РЕЗУЛЬТАТЫ / {filtered.length}</strong></p>{#if filtered.length}<div class="list-group">{#each filtered as item}<a class="list-group-item" href={item.href}><span class="label label-default pull-right">{item.status}</span><small>{item.type}</small><h3 class="list-group-item-heading">{item.title} →</h3><p class="list-group-item-text">{item.description}</p></a>{/each}</div>{:else}<div class="well"><h3>Ничего не найдено</h3><p>Измените запрос или выберите другой раздел.</p><button class="btn btn-default" on:click={() => {query = ''; category = 'Все'}}>Сбросить фильтры</button></div>{/if}</div></div><hr><p><a href="/">← На главную</a> · AZIMUTH / WIKI</p></main>
