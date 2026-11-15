@@ -238,16 +238,8 @@ body {
   font-size: 16px;
   letter-spacing: 0;
 }
-body::before {
-  content: "";
-  pointer-events: none;
-  position: fixed;
-  inset: 0;
-  z-index: 50;
-  background: repeating-linear-gradient(0deg, #00000012 0, #00000012 1px, transparent 1px, transparent 3px);
-}
 .main-block {
-  width: min(80ch, 100% - 2rem);
+  width: min(110ch, 100% - 2rem);
   margin: 1rem auto;
   border: 2px solid var(--line);
   box-shadow: 0 0 0 2px var(--page), 0 0 0 4px var(--line), 8px 8px 0 var(--shadow);
