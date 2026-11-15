@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "WebPlus IBM XGA";
+  src: url("WebPlus_IBM_XGA-AI_12x20.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* BOOTSTRA.386 provides the component shapes, font and classic Screen palette.
    These rules preserve the supplied 90ch layout and add responsive theme tokens. */
 :root {
@@ -15,6 +23,9 @@
   --input: #091421; --yellow: #ff5; --on-accent: #000; --note: #1c2c42;
 }
 * { box-sizing: border-box; }
+html, body, button, input, select, textarea {
+  font-family: "WebPlus IBM XGA", monospace !important;
+}
 body { background: var(--page); color: var(--ink); line-height: 1.35; margin: 0; overflow-x: hidden; }
 .main-block { width: 90ch; max-width: 100%; margin: 0 auto; background: var(--surface); border-inline: 1px solid var(--line); min-height: 100vh; display: flex; flex-direction: column; }
 main { flex: 1; }
