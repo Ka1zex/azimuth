@@ -1,11 +1,59 @@
 "use strict";
 (() => {
  const $=id=>document.getElementById(id), params=new URLSearchParams(location.search);
+ const themeButtons = [...document.querySelectorAll('[data-theme-choice]')];
+ function setTheme(value, persist) {
+  const theme = value === 'dark' ? 'dark' : 'screen';
+  document.documentElement.dataset.theme = theme;
+  themeButtons.forEach(button => {
+   const active = button.dataset.themeChoice === theme;
+   button.classList.toggle('active', active);
+   button.setAttribute('aria-pressed', String(active));
+  });
+  if (persist) { try { localStorage.setItem('azimuth-theme', theme); } catch (error) {} }
+ }
+ setTheme(document.documentElement.dataset.theme, false);
+ themeButtons.forEach(button => button.addEventListener('click', () => setTheme(button.dataset.themeChoice, true)));
+ window.addEventListener('storage', event => {
+  if (event.key === 'azimuth-theme' || event.key === null) setTheme(event.newValue, false);
+ });
+ const normalize = value => value.toLocaleLowerCase('ru').replace(/ё/g, 'е').replace(/\s+/g, ' ').trim();
  if ($('article-list')) {
-  const search=$('search'),category=$('category'),items=[...document.querySelectorAll('[data-article]')];
-  search.value=params.get('q')||''; category.value=params.get('category')||'';
-  function filter(){const q=search.value.trim().toLocaleLowerCase('ru');let n=0;items.forEach(el=>{const visible=(!q||(el.dataset.search+' '+el.dataset.category.toLocaleLowerCase('ru')).includes(q))&&(!category.value||el.dataset.category===category.value);el.hidden=!visible;if(visible)n++;});$('result-count').textContent=`Найдено: ${n} из ${items.length}`;$('no-results').hidden=n>0;}
-  search.addEventListener('input',filter);category.addEventListener('change',filter);$('reset').addEventListener('click',()=>{search.value='';category.value='';filter();search.focus();});filter();
+  const search = $('search'), category = $('category');
+  const items = [...document.querySelectorAll('[data-article]')];
+  const pills = [...document.querySelectorAll('[data-filter-category]')];
+  search.value = params.get('q') || '';
+  category.value = params.get('category') || '';
+  function filter() {
+   const words = normalize(search.value).split(' ').filter(Boolean);
+   let count = 0;
+   items.forEach(item => {
+    const text = normalize(item.dataset.search + ' ' + item.dataset.category);
+    const visible = words.every(word => text.includes(word)) && (!category.value || item.dataset.category === category.value);
+    item.hidden = !visible;
+    if (visible) count++;
+   });
+   $('result-count').textContent = `Найдено: ${count} из ${items.length}`;
+   $('no-results').hidden = count > 0;
+   pills.forEach(button => {
+    const active = button.dataset.filterCategory === category.value;
+    button.classList.toggle('active', active);
+    button.setAttribute('aria-pressed', String(active));
+   });
+  }
+  search.addEventListener('input', filter);
+  search.addEventListener('keydown', event => {
+   if (event.key === 'Escape') { search.value = ''; filter(); }
+  });
+  category.addEventListener('change', filter);
+  pills.forEach(button => button.addEventListener('click', () => {
+   category.value = button.dataset.filterCategory;
+   filter();
+  }));
+  $('reset').addEventListener('click', () => {
+   search.value = ''; category.value = ''; filter(); search.focus();
+  });
+  filter();
  }
  if ($('media-grid')&&window.AZ_MEDIA) {
   const search=$('media-search'),type=$('media-type');let page=0;const size=36;search.value=params.get('q')||'';
