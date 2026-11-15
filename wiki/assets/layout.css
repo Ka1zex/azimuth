@@ -233,8 +233,8 @@ summary { cursor: pointer; color: var(--link); }
 }
 body {
   background-color: var(--page);
-  background-image: radial-gradient(circle at 1px 1px, #ffffff18 1px, transparent 1px);
-  background-size: 4px 4px;
+  background-image: radial-gradient(circle at 1.5px 1.5px, #ffffff30 1.5px, transparent 1.7px);
+  background-size: 7px 7px;
   font-size: 16px;
   letter-spacing: 0;
 }
@@ -339,3 +339,139 @@ code, pre { background: #000000; color: var(--yellow); border: 1px solid var(--l
   .wiki-nav > li > a { border: 1px solid var(--line); }
   .brand { font-size: 1.8rem; }
 }
+
+/* Screen is the light BOOTSTRA.386 desktop: windows sit over a visible dot grid. */
+:root[data-theme="screen"] {
+  --page: #bbb;
+  --surface: #fff;
+  --raised: #eee;
+  --ink: #000;
+  --link: #000084;
+  --band: #000084;
+  --band-ink: #fff;
+  --accent: #0aa;
+  --line: #000;
+  --muted: #555;
+  --highlight: #fff;
+  --shadow: #555;
+  --input: #fff;
+  --yellow: #ff5;
+  --on-accent: #000;
+  --note: #fff;
+}
+:root[data-theme="screen"] body {
+  background-color: var(--page);
+  background-image: radial-gradient(circle at 1.5px 1.5px, #555 1.5px, transparent 1.7px);
+  background-size: 7px 7px;
+}
+:root[data-theme="screen"] .main-block {
+  background: var(--surface);
+  box-shadow: 0 0 0 2px var(--page), 0 0 0 4px #000, 8px 8px 0 #555;
+}
+:root[data-theme="screen"] .main-block::before {
+  background: #000084;
+  color: #fff;
+}
+:root[data-theme="screen"] .header-block,
+:root[data-theme="screen"] .intro-box.jumbotron,
+:root[data-theme="screen"] .wiki-nav,
+:root[data-theme="screen"] .entry,
+:root[data-theme="screen"] .side-box.panel,
+:root[data-theme="screen"] .preflight.panel,
+:root[data-theme="screen"] .template-block.panel,
+:root[data-theme="screen"] .media-tile {
+  background: var(--surface);
+}
+:root[data-theme="screen"] .header-block { border-bottom-color: #000; }
+:root[data-theme="screen"] .brand { color: #000084; text-shadow: none; }
+:root[data-theme="screen"] .brand-mark,
+:root[data-theme="screen"] .brand-sub,
+:root[data-theme="screen"] .eyebrow,
+:root[data-theme="screen"] .entry-meta,
+:root[data-theme="screen"] .display-label,
+:root[data-theme="screen"] .intro-bottom,
+:root[data-theme="screen"] .display-label::before { color: #555; }
+:root[data-theme="screen"] .build-tag { color: #000; background: #eee; }
+:root[data-theme="screen"] .build-tag span { color: #000084; }
+:root[data-theme="screen"] .nav-block { background: #000; }
+:root[data-theme="screen"] .wiki-nav > li > a { color: #000; }
+:root[data-theme="screen"] .wiki-nav > li.active > a,
+:root[data-theme="screen"] .wiki-nav > li.active > a:hover,
+:root[data-theme="screen"] .wiki-nav > li > a:hover,
+:root[data-theme="screen"] .wiki-nav > li > a:focus { background: #000084; color: #fff; }
+:root[data-theme="screen"] .wiki-nav > li > a::first-letter { color: #000084; }
+:root[data-theme="screen"] .intro-box.jumbotron::before { color: #000084; }
+:root[data-theme="screen"] .intro-box h1,
+:root[data-theme="screen"] .page-title,
+:root[data-theme="screen"] .section-title,
+:root[data-theme="screen"] .article-body h2,
+:root[data-theme="screen"] .article-body h3 { color: #000084; }
+:root[data-theme="screen"] .intro-box h1::after { color: #000084; }
+:root[data-theme="screen"] .hero-actions .btn-primary,
+:root[data-theme="screen"] .btn-primary,
+:root[data-theme="screen"] a.btn-primary { background: #0aa; color: #000; border-color: #000; }
+:root[data-theme="screen"] .hero-actions .btn-default,
+:root[data-theme="screen"] .btn-default,
+:root[data-theme="screen"] a.btn-default { background: #eee; color: #000; border-color: #000; }
+:root[data-theme="screen"] .btn-primary:hover,
+:root[data-theme="screen"] .btn-primary:focus { background: #088; color: #fff; }
+:root[data-theme="screen"] .btn-default:hover,
+:root[data-theme="screen"] .btn-default:focus { background: #555; color: #fff; }
+:root[data-theme="screen"] .theme-switch .btn { background: #eee; color: #000; border-color: #000; }
+:root[data-theme="screen"] .theme-switch .btn.active { background: #000084; color: #fff; }
+:root[data-theme="screen"] .catalog-controls { background: #eee; border-color: #000; }
+:root[data-theme="screen"] .catalog-controls .form-control,
+:root[data-theme="screen"] .toolbar .form-control {
+  background: #fff;
+  color: #000;
+  border: 2px inset #aaa;
+  box-shadow: none;
+}
+:root[data-theme="screen"] select.form-control {
+  appearance: auto;
+  background-color: #fff;
+  color: #000;
+  border: 2px inset #aaa;
+}
+:root[data-theme="screen"] .input-group-addon { background: #000084; color: #fff; border-color: #000; }
+:root[data-theme="screen"] .catalog-controls .btn,
+:root[data-theme="screen"] .filter-pills .btn { background: #eee; color: #000; border-color: #000; }
+:root[data-theme="screen"] .catalog-controls .btn:hover,
+:root[data-theme="screen"] .filter-pills .btn:hover,
+:root[data-theme="screen"] .filter-pills .btn.active { background: #555; color: #fff; }
+:root[data-theme="screen"] .entry { border-color: #000; }
+:root[data-theme="screen"] .entry::before { color: #000084; }
+:root[data-theme="screen"] .entry-heading { color: #000084; border-bottom-color: #000; }
+:root[data-theme="screen"] .entry-index.label,
+:root[data-theme="screen"] .badge,
+:root[data-theme="screen"] .tag { background: #000084; color: #fff; }
+:root[data-theme="screen"] .entry:hover,
+:root[data-theme="screen"] .entry:focus-visible { background: #000084; color: #fff; outline-color: #0aa; }
+:root[data-theme="screen"] .entry:hover .entry-heading,
+:root[data-theme="screen"] .entry:focus-visible .entry-heading { background: #0aa; color: #000; }
+:root[data-theme="screen"] .entry:hover .entry-index { background: #000084; color: #fff; }
+:root[data-theme="screen"] .side-box .side-title.panel-heading,
+:root[data-theme="screen"] .preflight summary.panel-heading,
+:root[data-theme="screen"] .template-block.panel > .panel-heading { background: #000084; color: #fff; }
+:root[data-theme="screen"] .list-group-item,
+:root[data-theme="screen"] a.list-group-item { background: #fff; color: #000084; border-color: #000; }
+:root[data-theme="screen"] a.list-group-item:hover,
+:root[data-theme="screen"] a.list-group-item:focus { background: #0aa; color: #000; }
+:root[data-theme="screen"] .progress { background: #fff; border-color: #000; }
+:root[data-theme="screen"] .progress-bar { background: #0aa; }
+:root[data-theme="screen"] .guide-share { background: #000084; }
+:root[data-theme="screen"] .breadcrumbs.breadcrumb,
+:root[data-theme="screen"] .toc { background: #eee; border-color: #000; }
+:root[data-theme="screen"] .article-body .table { background: #fff; border-color: #000; }
+:root[data-theme="screen"] .article-body th { background: #000084; color: #fff; }
+:root[data-theme="screen"] .article-body .table > thead > tr > th,
+:root[data-theme="screen"] .article-body .table > tbody > tr > td { border-color: #000; }
+:root[data-theme="screen"] .table-striped > tbody > tr:nth-of-type(odd) { background: #eee; color: #000; }
+:root[data-theme="screen"] .table-hover > tbody > tr:hover { background: #0aa; color: #000; }
+:root[data-theme="screen"] .note.alert,
+:root[data-theme="screen"] .empty.alert { background: #fff; color: #000; border-color: #000; border-left-color: #0aa; }
+:root[data-theme="screen"] .note.warning { border-left-color: #a50; }
+:root[data-theme="screen"] .media-preview { background: #eee; border-color: #000; }
+:root[data-theme="screen"] .footer-block { background: #000084; color: #fff; }
+:root[data-theme="screen"] .footer-block a,
+:root[data-theme="screen"] .footer-note { color: #fff; }
