@@ -193,3 +193,157 @@ summary { cursor: pointer; color: var(--link); }
   .entry { transition: none; }
   .entry:hover, .entry:focus-visible { transform: none; }
 }
+
+/* DOS386 terminal pass: 80-column geometry, hard borders and EGA color language. */
+:root {
+  --page: #0000aa;
+  --surface: #0000aa;
+  --raised: #0000aa;
+  --ink: #ffffff;
+  --link: #ffff55;
+  --band: #0000aa;
+  --band-ink: #ffffff;
+  --accent: #00aaaa;
+  --line: #ffffff;
+  --muted: #aaaaaa;
+  --highlight: #ffffff;
+  --shadow: #000055;
+  --input: #000000;
+  --yellow: #ffff55;
+  --on-accent: #000000;
+  --note: #000000;
+}
+:root[data-theme="dark"] {
+  --page: #000000;
+  --surface: #000000;
+  --raised: #000000;
+  --ink: #aaaaaa;
+  --link: #55ffff;
+  --band: #000000;
+  --band-ink: #aaaaaa;
+  --accent: #555555;
+  --line: #aaaaaa;
+  --muted: #777777;
+  --highlight: #aaaaaa;
+  --shadow: #222222;
+  --input: #000000;
+  --yellow: #ffffff;
+  --on-accent: #ffffff;
+  --note: #000000;
+}
+body {
+  background-color: var(--page);
+  background-image: radial-gradient(circle at 1px 1px, #ffffff18 1px, transparent 1px);
+  background-size: 4px 4px;
+  font-size: 16px;
+  letter-spacing: 0;
+}
+body::before {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: repeating-linear-gradient(0deg, #00000012 0, #00000012 1px, transparent 1px, transparent 3px);
+}
+.main-block {
+  width: min(80ch, 100% - 2rem);
+  margin: 1rem auto;
+  border: 2px solid var(--line);
+  box-shadow: 0 0 0 2px var(--page), 0 0 0 4px var(--line), 8px 8px 0 var(--shadow);
+  position: relative;
+}
+.main-block::before {
+  content: "AZIMUTH.EXE  v0.52  |  MEMORY: 640K OK  |  F1: HELP";
+  display: block;
+  order: -1;
+  background: var(--line);
+  color: var(--page);
+  padding: 2px 6px;
+  font-size: .75rem;
+}
+.header-block { padding: .8rem 1rem 0; border-bottom: 2px solid var(--line); }
+.masthead { align-items: flex-start; }
+.brand { color: var(--yellow); font-size: 2.45rem; letter-spacing: .08em; text-shadow: 2px 2px 0 #000000; }
+.brand-mark { font-size: 3.5rem; color: var(--accent); }
+.brand-sub { color: var(--ink); font-size: .7rem; letter-spacing: .12em; margin-top: .45rem; }
+.build-tag { border: 1px solid var(--line); padding: .35rem .5rem; color: var(--ink); text-align: left; }
+.build-tag span { background: transparent; color: var(--yellow); padding: 0; }
+.display-bar { margin-top: .65rem; padding: .5rem 0; border-top: 1px dashed var(--line); }
+.display-label::before { content: "> "; color: var(--yellow); }
+.theme-switch .btn, .btn, .form-control, .input-group-addon, .panel, .alert, .breadcrumb, .progress, .list-group-item, .table, .media-tile, .toc, details { border-radius: 0 !important; }
+.theme-switch .btn { border: 1px solid var(--line); background: var(--page); color: var(--ink); }
+.theme-switch .btn.active { background: var(--line); color: var(--page); box-shadow: none; }
+.nav-block { border: 0; background: var(--line); padding: 1px; }
+.wiki-nav { background: var(--page); }
+.wiki-nav > li > a { color: var(--ink); border: 0; padding: .45rem .25rem; text-transform: uppercase; font-size: .8rem; }
+.wiki-nav > li.active > a, .wiki-nav > li.active > a:hover, .wiki-nav > li > a:hover, .wiki-nav > li > a:focus { background: var(--accent); color: var(--on-accent); }
+.wiki-nav > li > a::first-letter { color: var(--yellow); }
+.intro-box.jumbotron { background: var(--page); border-block: 0; padding: 1.2rem 1rem; }
+.intro-box.jumbotron::before { content: "C:\\GELION> DIR /W"; display: block; color: var(--accent); margin-bottom: .5rem; }
+.eyebrow { color: var(--accent); letter-spacing: .08em; }
+.eyebrow .label { border: 1px solid var(--accent); background: transparent; color: var(--accent); }
+.intro-box h1 { color: var(--yellow); font-size: 1.45rem; letter-spacing: .1em; text-transform: uppercase; }
+.intro-box h1::after { content: "_"; color: var(--yellow); animation: dos-cursor 1s steps(2,end) infinite; }
+.hero-actions .btn { border: 1px solid var(--line); box-shadow: 2px 2px 0 var(--shadow); }
+.hero-actions .btn-primary { background: var(--accent); color: var(--on-accent); }
+.hero-actions .btn-default { background: transparent; color: var(--yellow); }
+.intro-bottom { border-top-style: dashed; color: var(--accent); }
+.content-block { gap: .8rem; padding: .8rem; }
+.section-title { color: var(--yellow); border-bottom: 1px dashed var(--line); text-transform: uppercase; }
+.section-title::before { content: "[ "; color: var(--accent); }
+.section-title::after { content: " ]"; color: var(--accent); margin-right: auto; }
+.section-title .badge { background: var(--accent); color: var(--on-accent); }
+.catalog-controls { background: transparent; border: 1px dashed var(--line); padding: .65rem; }
+.search-label { color: var(--accent); text-transform: uppercase; }
+.input-group-addon { border: 1px solid var(--line); background: var(--accent); color: var(--on-accent); }
+.catalog-controls .form-control, .toolbar .form-control { background: var(--input); color: var(--yellow); border: 1px solid var(--line); box-shadow: inset 2px 2px 0 #000000; }
+.catalog-controls .btn, .filter-pills .btn { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+.catalog-controls .btn:hover, .filter-pills .btn:hover, .filter-pills .btn.active { background: var(--accent); color: var(--on-accent); }
+.entry { background: var(--page); border: 1px solid var(--line); box-shadow: none; }
+.entry::before { content: "[FILE]"; position: absolute; top: .45rem; left: .45rem; color: var(--accent); font-size: .65rem; z-index: 1; }
+.entry-heading { padding-left: 4.4rem; background: transparent; color: var(--yellow); border-bottom: 1px dashed var(--line); }
+.entry-index.label { background: var(--accent); color: var(--on-accent); }
+.entry-body { padding: .5rem .65rem; }
+.entry-meta { color: var(--accent); }
+.entry:hover, .entry:focus-visible { transform: none; background: #000055; outline: 2px solid var(--yellow); outline-offset: 2px; }
+.entry:hover .entry-heading, .entry:focus-visible .entry-heading { background: var(--accent); color: var(--on-accent); }
+.entry:hover .entry-index { color: var(--on-accent); background: var(--page); }
+.side-box.panel, .preflight.panel { background: var(--page); border: 1px solid var(--line); box-shadow: none; }
+.side-box .side-title.panel-heading, .preflight summary.panel-heading, .template-block.panel > .panel-heading { background: var(--line); color: var(--page); text-transform: uppercase; }
+.side-box .side-title.panel-heading::before { content: ":: "; }
+.side-body.panel-body { padding: .55rem; }
+.side-art { height: 105px; border-bottom: 1px solid var(--line); image-rendering: pixelated; }
+.list-group-item, a.list-group-item { background: var(--page); color: var(--link); border-color: var(--line); }
+a.list-group-item:hover, a.list-group-item:focus { background: var(--accent); color: var(--on-accent); }
+.progress { border: 1px solid var(--line); background: #000000; height: 11px; }
+.progress-bar { background: var(--accent); }
+.guide-share { background: var(--yellow); }
+.badge, .tag { background: var(--accent); color: var(--on-accent); }
+.full-content { padding: .8rem; }
+.page-title { color: var(--yellow); text-transform: uppercase; letter-spacing: .06em; }
+.page-title::before { content: "C:\\WIKI> "; color: var(--accent); font-size: .7em; }
+.breadcrumbs.breadcrumb, .toc { background: transparent; border: 1px dashed var(--line); color: var(--ink); }
+.article-body h2, .article-body h3 { color: var(--yellow); border-bottom-style: dashed; text-transform: uppercase; }
+.article-body h2::before { content: "["; color: var(--accent); }
+.article-body h2::after { content: "]"; color: var(--accent); }
+.article-body .table { background: transparent; border: 1px solid var(--line); }
+.article-body th { background: var(--line); color: var(--page); }
+.article-body .table > thead > tr > th, .article-body .table > tbody > tr > td { border-color: var(--line); }
+.table-striped > tbody > tr:nth-of-type(odd) { background: #000055; color: var(--ink); }
+.table-hover > tbody > tr:hover { background: var(--accent); color: var(--on-accent); }
+.note.alert, .empty.alert { background: #000000; color: var(--ink); border: 1px solid var(--line); border-left: 6px solid var(--accent); }
+.note.warning { border-left-color: var(--yellow); }
+.media-tile { background: var(--page); border: 1px solid var(--line); }
+.media-preview { background: #000000; border: 1px solid var(--line); }
+.footer-block { background: var(--line); color: var(--page); border-top: 0; }
+.footer-block a { color: var(--page); }
+.footer-note { color: var(--page); }
+.template-block.panel { background: var(--page); border: 1px solid var(--line); }
+code, pre { background: #000000; color: var(--yellow); border: 1px solid var(--line); }
+@keyframes dos-cursor { 50% { opacity: 0; } }
+@media (max-width: 800px) {
+  .main-block { width: calc(100% - 1rem); margin: .5rem; box-shadow: 4px 4px 0 var(--shadow); }
+  .wiki-nav > li > a { border: 1px solid var(--line); }
+  .brand { font-size: 1.8rem; }
+}
